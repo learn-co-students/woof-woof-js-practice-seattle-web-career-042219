@@ -7,10 +7,10 @@
       "image": "https://weloveanimals.me/wp-content/uploads/2017/10/gettyimages-590486672-e1508512743796.jpg"
     },
     {
-      "id": 2,
       "name": "Nugget",
+      "image": "https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg",
       "isGoodDog": false,
-      "image": "https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg"
+      "id": 2
     },
     {
       "id": 3,
@@ -37,10 +37,10 @@
       "image": "https://static01.nyt.com/images/2018/02/11/realestate/11dogs-topbreeds-Chihuahua/11dogs-topbreeds-Chihuahua-master495.jpg"
     },
     {
-      "id": 7,
       "name": "Puddles",
+      "image": "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny84OTEvb3JpZ2luYWwvd2h5LWRvZ3MtZWF0LXBvb3A=",
       "isGoodDog": true,
-      "image": "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny84OTEvb3JpZ2luYWwvd2h5LWRvZ3MtZWF0LXBvb3A="
+      "id": 7
     },
     {
       "id": 8,
