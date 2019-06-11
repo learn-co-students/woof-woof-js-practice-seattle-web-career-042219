@@ -45,7 +45,7 @@
     {
       "id": 8,
       "name": "Mittens",
-      "isGoodDog": true,
+      "isGoodDog": false,
       "image": "http://evelynswinebar.com/wp-content/uploads/2018/06/dogpic.jpg"
     },
     {
@@ -57,7 +57,7 @@
     {
       "id": 10,
       "name": "Fido",
-      "isGoodDog": true,
+      "isGoodDog": false,
       "image": "https://www.petmd.com/sites/default/files/salmonella-infection-dogs.jpg"
     }
   ]
