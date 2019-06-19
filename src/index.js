@@ -1,28 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
-  getDogs();
+  getDogs().then(dogs => showDogs(dogs));
   addListeners();
 });
 
 const dogUrl = "http://localhost:3000/pups";
-let filterDogsBool = false;
 
 function addListeners() {
-  let filterBtn = document.getElementById("good-dog-filter");
+  const filterBtn = document.getElementById("good-dog-filter");
   filterBtn.addEventListener("click", e => {
     e.preventDefault();
-    filterDogs();
+    toggleFilterDogs();
   });
 }
 
-function getDogs() {
-  fetch(dogUrl)
-    .then(res => res.json())
-    .then(dogs => showDogs(dogs))
-    .catch(err => console.log(err));
+function toggleFilterDogs() {
+  const filterBtn = document.getElementById("good-dog-filter");
+  if (filterBtn.innerText.includes("OFF")) {
+    filterBtn.innerText = "Filter good dogs: ON";
+    updateDogBar();
+  } else {
+    filterBtn.innerText = "Filter good dogs: OFF";
+    updateDogBar();
+  }
 }
 
-function showDogs(dogs) {
-  dogs.forEach(dog => showDog(dog));
+function getDogs() {
+  return (
+    fetch(dogUrl)
+      .then(res => res.json())
+      // .then(dogs => showDogs(dogs))
+      .catch(err => console.log(err))
+  );
+}
+
+function showDogs(dogs, filter = false) {
+  let dogBar = document.getElementById("dog-bar");
+  dogBar.innerHTML = "";
+  if (filter) {
+    dogs.filter(dog => dog.isGoodDog).forEach(dog => showDog(dog));
+  } else {
+    dogs.forEach(dog => showDog(dog));
+  }
 }
 
 function showDog(dog) {
@@ -37,13 +55,11 @@ function showDog(dog) {
     dogInfo(dog);
   });
 
-  if (!filterDogsBool && dog.isGoodDog) {
-    dogSpan.appendChild(dogName);
-    dogDiv.appendChild(dogSpan);
-  }
+  dogSpan.appendChild(dogName);
+  dogDiv.appendChild(dogSpan);
 }
 
-function toggleDog(dog, button) {
+function toggleIsGoodDog(dog, button) {
   dog.isGoodDog = !dog.isGoodDog;
   button.innerText = dog.isGoodDog ? "Good Dog!" : "Bad Dog!";
 }
@@ -64,7 +80,7 @@ function dogInfo(dog) {
   let button = document.createElement("button");
   button.innerText = dog.isGoodDog ? "Good Dog!" : "Bad Dog!";
   button.addEventListener("click", () => {
-    toggleDog(dog, button);
+    toggleIsGoodDog(dog, button);
     patchDog(dog);
   });
 
@@ -87,11 +103,11 @@ function patchDog(dog) {
     .catch(err => console.log(err));
 }
 
-function filterDogs() {
-  filterDogsBool = !filterDogsBool;
-  let filterBtn = document.getElementById("good-dog-filter");
-  filterBtn.innerText = filterDogsBool
-    ? "Filter good dogs: ON"
-    : "Filter good dogs: OFF";
-  showDogs();
+function updateDogBar() {
+  const filterBtn = document.getElementById("good-dog-filter");
+  if (filterBtn.innerText.includes("OFF")) {
+    getDogs().then(dogs => showDogs(dogs));
+  } else {
+    getDogs().then(dogs => showDogs(dogs, true));
+  }
 }
